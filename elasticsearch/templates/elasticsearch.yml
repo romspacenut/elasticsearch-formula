@@ -27,6 +27,30 @@ indices.fielddata.cache.size: {{ elasticsearch.fielddata_cache_size }}
 indices.fielddata.cache.expire: {{ elasticsearch.fielddata_cache_expire }}
 {% endif %}
 
+{% if elasticsearch.node_master %}
+# Every node can be configured to allow or deny being eligible as the master,
+# and to allow or deny to store the data.
+#
+# Allow this node to be eligible as a master node (enabled by default):
+#
+node.master: {{ elasticsearch.node_master }}
+{% endif %}
+{% if elasticsearch.node_data %}
+#
+# Allow this node to store data (enabled by default):
+#
+node.data: {{ elasticsearch.node_data }}
+{% endif %}
+{% if elasticsearch.index_number_of_shards %}
+# Set the number of shards (splits) of an index (5 by default):
+#
+index.number_of_shards: {{ elasticsearch.index_number_of_shards }}
+{% endif %}
+{% if elasticsearch.index_number_of_replicas %}
+# Set the number of replicas (additional copies) of an index (1 by default):
+#
+index.number_of_replicas: {{ elasticsearch.index_number_of_replicas }}
+{% endif %}
 # As per CVE-2015-1427 advisory:
 script:
   groovy:
