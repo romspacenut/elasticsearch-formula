@@ -6,8 +6,8 @@ path.logs: {{ elasticsearch.logs_path }}
 
 {% if elasticsearch.clusterunicast %}
 discovery.zen.ping.multicast.enabled: false
-{%- set addrs = elasticsearch.clustersearch %}
-{%- if addrs is defined %}
+{%- set addrs = salt['pillar.get']('elasticsearch:clustersearch', []) %}
+{%- if addrs %}
 discovery.zen.ping.unicast.hosts:
 {%- for host in addrs %}
   - {{ host }}{% endfor %}
