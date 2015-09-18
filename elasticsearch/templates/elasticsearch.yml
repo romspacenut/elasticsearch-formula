@@ -6,11 +6,11 @@ path.logs: {{ elasticsearch.logs_path }}
 
 {% if elasticsearch.clusterunicast %}
 discovery.zen.ping.multicast.enabled: false
-{%- set addrs = salt['mine.get'](elasticsearch.clustersearch, 'network.ip_addrs') %}
+{%- set addrs = elasticsearch.clustersearch %}
 {%- if addrs is defined %}
 discovery.zen.ping.unicast.hosts:
-{%- for name, addrlist in addrs.items() %}
-  - {{ addrlist|first() }}{% endfor %}
+{%- for host in addrs %}
+  - {{ host }}{% endfor %}
 {% endif %}
 {% endif %}
 
