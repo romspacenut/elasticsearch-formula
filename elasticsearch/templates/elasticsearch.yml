@@ -51,8 +51,10 @@ index.number_of_shards: {{ elasticsearch.index_number_of_shards }}
 #
 index.number_of_replicas: {{ elasticsearch.index_number_of_replicas }}
 {% endif %}
+
+# commented below out as MySQL river doesn't not work if it's not
 # As per CVE-2015-1427 advisory:
-script:
-  groovy:
-    sandbox:
-      enabled: false
+#script:
+#  groovy:
+#    sandbox:
+#      enabled: false
