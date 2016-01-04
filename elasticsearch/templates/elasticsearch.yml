@@ -19,20 +19,20 @@ discovery.zen.ping.unicast.hosts:
 {%- endif %}
 {%- endif %}
 
-{% if elasticsearch.cluster_name %}
+{%- if elasticsearch.cluster_name %}
 cluster.name: {{ elasticsearch.cluster_name }}
-{% endif %}
-{% if elasticsearch.node_name %}
+{%- endif %}
+{%- if elasticsearch.node_name %}
 node.name: {{ elasticsearch.node_name }}
-{% endif %}
-{% if elasticsearch.fielddata_cache_size %}
+{%- endif %}
+{%- if elasticsearch.fielddata_cache_size %}
 indices.fielddata.cache.size: {{ elasticsearch.fielddata_cache_size }}
-{% endif %}
-{% if elasticsearch.fielddata_cache_expire %}
+{%- endif %}
+{%- if elasticsearch.fielddata_cache_expire %}
 indices.fielddata.cache.expire: {{ elasticsearch.fielddata_cache_expire }}
-{% endif %}
+{%- endif %}
 
-{% if elasticsearch.node_master %}
+{%- if elasticsearch.node_master %}
 # Every node can be configured to allow or deny being eligible as the master,
 # and to allow or deny to store the data.
 #
@@ -40,26 +40,19 @@ indices.fielddata.cache.expire: {{ elasticsearch.fielddata_cache_expire }}
 #
 node.master: {{ elasticsearch.node_master }}
 {% endif %}
-{% if elasticsearch.node_data %}
+{%- if elasticsearch.node_data %}
 #
 # Allow this node to store data (enabled by default):
 #
 node.data: {{ elasticsearch.node_data }}
 {% endif %}
-{% if elasticsearch.index_number_of_shards %}
+{%- if elasticsearch.index_number_of_shards %}
 # Set the number of shards (splits) of an index (5 by default):
 #
 index.number_of_shards: {{ elasticsearch.index_number_of_shards }}
 {% endif %}
-{% if elasticsearch.index_number_of_replicas %}
+{%- if elasticsearch.index_number_of_replicas %}
 # Set the number of replicas (additional copies) of an index (1 by default):
 #
 index.number_of_replicas: {{ elasticsearch.index_number_of_replicas }}
 {% endif %}
-
-# commented below out as MySQL river doesn't not work if it's not
-# As per CVE-2015-1427 advisory:
-#script:
-#  groovy:
-#    sandbox:
-#      enabled: false
