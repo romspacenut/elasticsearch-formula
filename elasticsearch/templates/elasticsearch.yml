@@ -1,7 +1,7 @@
 {% from "elasticsearch/map.jinja" import elasticsearch with context %}
 
 {%- if elasticsearch.network is defined %}
-{%- for key, value in elasticsearch.network %}
+{%- for key, value in elasticsearch.network.iteritems() %}
 network.{{ key }}: {{ value }}
 {%- endfor %}
 {%- endif %}
