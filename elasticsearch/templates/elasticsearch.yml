@@ -1,6 +1,6 @@
 {% from "elasticsearch/map.jinja" import elasticsearch with context %}
 
-{%- if elasticsearch.network is defined and if elasticsearch.network %}
+{%- if elasticsearch.network is defined %}
 {%- for key, value in elasticsearch.network %}
 network.{{ key }}: {{ value }}
 {%- endfor %}
