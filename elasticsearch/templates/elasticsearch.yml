@@ -8,6 +8,8 @@ network.{{ key }}: {{ value }}
 path.data: {{ elasticsearch.data_path }}
 path.logs: {{ elasticsearch.logs_path }}
 
+http.enabled: {{ elasticsearch.http.enabled }}
+
 {%- if elasticsearch.clusterunicast %}
 discovery.zen.ping.multicast.enabled: false
 {%- set addrs = salt['pillar.get']('elasticsearch:clustersearch', []) %}
